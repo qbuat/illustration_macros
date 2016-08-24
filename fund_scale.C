@@ -1,3 +1,17 @@
+double xpos(double e)
+{
+  double x_min = -9;
+  double x_max = 9;
+  double e_min = 1e-6;
+  double e_max = 1e21;
+
+  double slope = (x_max-x_min)/(TMath::Log(e_max)-TMath::Log(e_min));
+  double offset = (x_min+x_max-slope*(TMath::Log(e_max)+TMath::Log(e_min)))/2.;
+  cout << slope << "/" << offset << endl;
+  return slope*TMath::Log(e)+offset;
+
+}
+
 void fund_scale()
 {
   double alpha = 197; //alpha/E=d avec alpha = 197 MeV.fm
@@ -89,16 +103,3 @@ void fund_scale()
 }
 
 
-double xpos(double e)
-{
-  double x_min = -9;
-  double x_max = 9;
-  double e_min = 1e-6;
-  double e_max = 1e21;
-
-  double slope = (x_max-x_min)/(TMath::Log(e_max)-TMath::Log(e_min));
-  double offset = (x_min+x_max-slope*(TMath::Log(e_max)+TMath::Log(e_min)))/2.;
-  cout << slope << "/" << offset << endl;
-  return slope*TMath::Log(e)+offset;
-
-}
